@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Blogs {% endblock title %}
+
+{% block body %}      
+<div class="Blog-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="Blogheading">
+               <h3>Blog </h3>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+{% for i in blog %}      
+<!-- Blogs --> 
+<div class="section layout_padding blog_blue_bg light_silver">
+   <div class="container">
+      
+      <div class="row">
+         <div class="col-md-8 offset-md-2">
+            <div class="full">
+               <div class="big_blog">
+                  <img class="img-responsive" src="{{i.image.url}}" alt="{{i.title}}" />
+               </div>
+               <div class="blog_cont_2">
+                  <h3>{{i.title}}</h3>
+                  <p class="sublittle"> {{i.created_at}} </p>
+                  <p>{{i.blogs}}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- end Blogs -->
+
+
+<!-- Comments -->
+<section class="layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="heading" style="padding-left: 15px;padding-right: 15px;">
+               <h4 style="border-bottom: solid #333 1px;">Comments {{i.comment.count}}</h4>
+            </div>
+         </div>
+      </div>
+      {% for j in comment %}
+      <div class="row">
+         <div class="col-md-12">
+            <div class="full comment_blog_line">
+               <div class="row">
+                  <div class="col-md-9">
+                     <div class="full contact_text">
+                        <h3>{{j.comment_user}}</h3>
+                        <h4>{{j.comment_at}}</h4>
+                        <p>{{j.comment}}</p>
+                     </div>
+                  </div>
+                  <!-- <div class="col-md-2">
+                     <a class="reply_bt" href="#">Like</a>
+                  </div> -->
+                  <!-- <form action="{% url 'delete' %}" method="post">
+                     {% csrf_token %}
+                     <div class="col-md-2">
+                        <a class="reply_bt">Delete</a>
+                     </div>
+                  </form> -->
+
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+
+
+      <div class="row margin_top_30">
+         <div class="col-md-12 margin_top_30">
+            <div class="heading" style="padding-left: 15px;padding-right: 15px;">
+               <h4>Post : Your Comments</h4>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="full comment_form">
+               <form method="post" action="{% url 'addcomment' i.id %}">
+                  {% csrf_token %}
+                  <fieldset>
+                     <div class="col-md-12">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <textarea placeholder="Comment here" name="comment"></textarea>
+                           </div>
+                        </div>
+                        <div class="row margin_top_30">
+                           <div class="col-md-12">
+                              <div class="center">
+                                 <button type="submit">Send</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </fieldset>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- end comments -->
+{% endfor %}
+
+
+{% endblock body %}
+

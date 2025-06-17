@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} About Us {% endblock title %}
+
+{% block body %}
+<div class="main-layout">
+   <!-- section --> 
+   <div class="About-bg">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="aboutheading">
+                  <h3>About <span class="orange_color">Us</span></h3>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% for x in post %}
+   <div class="section layout_padding">
+      <div class="container">
+         <div class="row margin_top_30">
+            <div class="col-md-6">
+               <img src="{{x.image.url}}" alt="" />
+            </div>
+            <div class="col-md-6">
+               <div class="full blog_cont">
+                  <h4>{{x.title}}</h4>
+                  <h5>{{x.created_at}}</h5>
+                  <p>{{x.post}}</p>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+
+         <div class="row margin_top_30">
+            <div class="col-md-12">
+               <div class="button_section full center margin_top_30">
+                  <a style="margin:0;" href="about.html">Read More</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end section -->
+   
+</div>
+{% endblock body %}
