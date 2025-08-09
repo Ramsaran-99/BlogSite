@@ -1,8 +1,8 @@
 {% load static %}
 <!-- loader  -->
-<div class="loader_bg">
+<!-- <div class="loader_bg">
     <div class="loader"><img src="{% static 'images/loading.gif' %}" alt=""/></div>
- </div>
+ </div> -->
  <!-- end loader -->
 <!-- header inner -->
 <div class="container-fluid">
@@ -18,9 +18,9 @@
             <div class="menu-area">
                 <div class="limit-box">
                 <nav class="main-menu">
-                    <ul class="menu-area-main">
-                        <li class="active">
-                            <a href="{% url 'home' %}">Home</a>
+                    <ul class="menu-area-main text-danger">
+                        <li class="active text-danger">
+                            <a href="{% url 'home' %}" class="text">Home</a>
                         </li>
                         <li>
                             <a href="{% url 'about' %}">About</a>
@@ -29,7 +29,7 @@
                             <a href="marketing.html">Marketing</a>
                         </li> -->
                         <li>
-                            <a href="{% url 'blog' %}">Blog</a>
+                            <a href="{% url 'blogpage' %}">Blog</a>
                         </li>
                         <li>
                             <a href="{% url 'contact' %}">Contact us</a>

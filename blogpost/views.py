@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
@@ -17,6 +17,14 @@ def homepage(request):
 # blogpage
 def blogpage(request):
     blogs=Blog.objects.all()
+    return render(request,'blogpage.html',
+                  {
+                      "blogs":blogs,
+                  })
+
+# induvidualblog
+def blog(request,id):
+    blogs=Blog.objects.get(id=id)
     comment=Comment.objects.all()
 
     if request.method=="POST":
@@ -27,7 +35,7 @@ def blogpage(request):
     return render(request,'blog.html',
                   {
                       "blog":blogs,
-                      "comment":comment,
+                      "comments":comment,
                   })
 
 # contactpage
@@ -94,6 +102,7 @@ def presslike(request,id):
             post.save()
 
         return redirect('blog',id=id)
+
 
 
 

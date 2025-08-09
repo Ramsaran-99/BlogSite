@@ -15,7 +15,9 @@
       </div>
    </div>
 </div>
-  
+
+
+{% for blog in blogs %}      
 <!-- Blogs --> 
 <div class="section layout_padding blog_blue_bg light_silver">
    <div class="container">
@@ -32,29 +34,18 @@
                   <p class="sublittle"> {{blog.created_at}} </p>
                   <p>{{blog.blogs}}</p>
                </div>
-               <a href="{% url 'blog' id=blog.id %}"></a>
+               <a href="{% url 'blog' id=blog.id %}">
+                  <button type="submit">View Comments</button>
+               </a>
             </div>
          </div>
-      </div>
-      <!-- comment section -->
-      <br class="row">
-         <h2>Comments</h2>
-         {% for comment in comments %}
-         <div class="comments">
-         <h3>{{comment.comment_user.username}}</h3>
-         <p>{{comment.comment}}</p>
-         <h6>{{comment.comment_at}}</h6>
-         <p>{{comment.comment_likes.count}}</p>
-
-         </div>
-         {% endfor %}
-
       </div>
    </div>
 </div>
 <!-- end Blogs -->
 
 
+{% endfor %}
 
 
 {% endblock body %}
