@@ -32,7 +32,7 @@
                   <p class="sublittle"> {{blog.created_at}} </p>
                   <p>{{blog.blogs}}</p>
                </div>
-               <a href="{% url 'blog' id=blog.id %}"></a>
+               <a href="{% url 'blog' blogid=blog.id %}"></a>
             </div>
          </div>
       </div>
@@ -41,7 +41,7 @@
          <h2>Comments</h2>
          {% for comment in comments %}
          <div class="comments">
-         <h3>{{comment.comment_user.username}}</h3>
+         {% comment %} <h3>{{comment.comment_user.username}}</h3> {% endcomment %}
          <p>{{comment.comment}}</p>
          <h6>{{comment.comment_at}}</h6>
          <p>{{comment.comment_likes.count}}</p>
@@ -49,6 +49,19 @@
          </div>
          {% endfor %}
 
+         <!-- Add comment -->
+   
+          <div class="addcomment">
+            <form method="post">
+               <textarea name="comment" id="">
+               </textarea>
+               <button type="submit">
+                  Add Comment
+               </button>
+               {% csrf_token %}
+               
+            </form>
+          </div>
       </div>
    </div>
 </div>

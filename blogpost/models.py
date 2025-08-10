@@ -30,7 +30,7 @@ class Comment(models.Model):
     comment_user=models.ForeignKey(User,on_delete=models.CASCADE)
     comment=models.TextField(blank=True,null=True)
     comment_at=models.DateTimeField(auto_now_add=True,blank=True,null=True)
-    comment_likes=models.ManyToManyField("C_Like")
+    comment_likes=models.ManyToManyField("C_Like",blank=True,null=True)
 
     def __str__(self):
         return str(self.comment_user)

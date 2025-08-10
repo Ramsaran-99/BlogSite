@@ -34,7 +34,7 @@
                   <p class="sublittle"> {{blog.created_at}} </p>
                   <p>{{blog.blogs}}</p>
                </div>
-               <a href="{% url 'blog' id=blog.id %}">
+               <a href="{% url 'blog' blogid=blog.id %}">
                   <button type="submit">View Comments</button>
                </a>
             </div>

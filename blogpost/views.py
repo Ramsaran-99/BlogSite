@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 
+
 # homepage
 def homepage(request):
     blog=Blog.objects.all()[:2]
@@ -23,19 +24,24 @@ def blogpage(request):
                   })
 
 # induvidualblog
-def blog(request,id):
-    blogs=Blog.objects.get(id=id)
-    comment=Comment.objects.all()
+@login_required(login_url='login')
+def blog(request,blogid):
+    blogs=get_object_or_404(Blog,id=blogid)
+    comments=blogs.comment.all()
 
     if request.method=="POST":
-        comment=request.POST.get('comment')
-        new_comment=Comment(comment=comment)
-        new_comment.save()
+        comment_txt=request.POST.get('comment')
+        if comment_txt:
+            new_comment=Comment.objects.create(comment_user=request.user,comment=comment_txt)
+            new_comment.save()
+            blogs.comment.add(new_comment)
+            
+            return redirect ('blog', blogid=blogid)
 
     return render(request,'blog.html',
                   {
                       "blog":blogs,
-                      "comments":comment,
+                      "comments":comments,
                   })
 
 # contactpage

@@ -34,12 +34,21 @@
                         <li>
                             <a href="{% url 'contact' %}">Contact us</a>
                         </li>
+                        {% if user.is_authenticated %}
+
+                        <p>You have loggedin</p>
+
+                        {% else %}
+
                         <li>
                             <a href="{% url 'login' %}">Login</a>
                         </li>
                         <li>
                             <a href="#">Register</a>
                         </li>
+
+                        {% endif %}
+
                         <li>
                             <a href="#"><img src="{% static 'images/search_icon.png' %}" alt="search" /></a>
                         </li>
