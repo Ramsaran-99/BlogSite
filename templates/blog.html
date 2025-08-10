@@ -41,7 +41,12 @@
          <h2>Comments</h2>
          {% for comment in comments %}
          <div class="comments">
-         {% comment %} <h3>{{comment.comment_user.username}}</h3> {% endcomment %}
+         {% if request.user %}
+         <h3>You</h3>
+         {% else %}
+         <h3>{{comment.comment_user.username}}</h3>
+         {% endif %}
+
          <p>{{comment.comment}}</p>
          <h6>{{comment.comment_at}}</h6>
          <p>{{comment.comment_likes.count}}</p>
