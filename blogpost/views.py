@@ -44,6 +44,16 @@ def blog(request,blogid):
                       "comments":comments,
                   })
 
+@login_required(login_url='login')
+def delete_cmnt(request,blogid,cmntid):
+    comment=get_object_or_404(Comment,id=cmntid)
+    if request.user==comment.comment_user:
+        if request.method=="POST":
+            comment.delete()
+            return redirect('blog',blogid=blogid)
+        return redirect('blog',blogid=blogid)
+
+
 # contactpage
 def contactpage(request):
     if request.method=="POST":

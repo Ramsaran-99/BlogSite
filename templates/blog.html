@@ -51,6 +51,13 @@
          <h6>{{comment.comment_at}}</h6>
          <p>{{comment.comment_likes.count}}</p>
 
+         <form action="{% url 'delete' blogid=blog.id cmntid=comment.id %}" method='post'>
+            {% csrf_token %}
+            <button type="submit">
+               Delete
+            </button>
+         </form>
+
          </div>
          {% endfor %}
 
@@ -58,12 +65,13 @@
    
           <div class="addcomment">
             <form method="post">
+               {% csrf_token %}
                <textarea name="comment" id="">
                </textarea>
                <button type="submit">
                   Add Comment
                </button>
-               {% csrf_token %}
+               
                
             </form>
           </div>
