@@ -51,7 +51,7 @@
          <h6>{{comment.comment_at}}</h6>
          <p>{{comment.comment_likes.count}}</p>
 
-         <form action="{% url 'delete' blogid=blog.id cmntid=comment.id %}" method='post'>
+         <form action="{% url 'deletecmnt' blogid=blog.id cmntid=comment.id %}" method='post'>
             {% csrf_token %}
             <button type="submit">
                Delete

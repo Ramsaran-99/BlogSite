@@ -11,8 +11,8 @@ urlpatterns=[
     path('login/',login,name="login"),
     path('logout/',logout,name="logout"),
     path('addcomment/<str:id>/',addcomment,name="addcomment"),
-    path('deletecomment/<str:blogid>/<str:cmntid>/',delete_cmnt,name='delete'),
-    # path('delete/<str:id>/<str:cmtid>',delete_comment,name="delete"),
+    path('deletecomment/<str:blogid>/<str:cmntid>/',delete_cmnt,name='deletecmnt'),
+    path('deleteblog/<str:blogid>/',delete_blog,name="deleteblog"),
     path('presslike/<str:id>/',presslike,name="presslike"),
     path('pressclike/<str:postid>/<str:commentid>/',press_c_likes,name="pressclike"),
 ]

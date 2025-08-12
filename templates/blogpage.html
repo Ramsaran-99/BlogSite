@@ -33,9 +33,18 @@
                   <h5>By:-{{blog.user.username}}</h5>
                   <p class="sublittle"> {{blog.created_at}} </p>
                   <p>{{blog.blogs}}</p>
+
+                  <form action="{% url 'deleteblog' blogid=blog.id %}" method="post">
+                     {% csrf_token %}
+                     <button type="submit">
+                        Delete
+                     </button>
+                  </form>
+
                </div>
                <a href="{% url 'blog' blogid=blog.id %}">
                   <button type="submit">View Comments</button>
+
                </a>
             </div>
          </div>

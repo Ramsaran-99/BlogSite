@@ -54,6 +54,19 @@ def delete_cmnt(request,blogid,cmntid):
         return redirect('blog',blogid=blogid)
 
 
+@login_required(login_url='login')
+def delete_blog(request,blogid):
+    blog=get_object_or_404(Blog,id=blogid)
+    if request.user==blog.user:
+        if request.method=="POST":
+            blog.like.all().delete()
+            blog.comment.all().delete()
+            blog.delete()
+            return redirect('blogpage')
+        return redirect('blogpage')
+
+
+
 # contactpage
 def contactpage(request):
     if request.method=="POST":
